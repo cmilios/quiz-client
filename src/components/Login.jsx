@@ -16,7 +16,9 @@ export default function Login() {
 
   const login = e => {
     e.preventDefault()
-    console.log(values)
+    if(validate()){
+      console.log(values)
+    }
   }
 
   const validate = () => {
@@ -40,8 +42,10 @@ export default function Login() {
             }
           }}>
             <form noValidate onSubmit={login}>
-              <TextField label="Email" name='email' variant='outlined' value={values.email} onChange={handleInputChange} autoComplete='off' />
-              <TextField label="Name" name="name" value={values.name} onChange={handleInputChange} variant="outlined" />
+              <TextField label="Email" name='email' variant='outlined' value={values.email} onChange={handleInputChange} autoComplete='off'
+               {...(errors.email && {error: true, helperText: errors.email})} />
+              <TextField label="Name" name="name" value={values.name} onChange={handleInputChange} variant="outlined"
+              {...(errors.name && {error: true, helperText: errors.name})} />
               <Button type='submit' variant='contained' size='large' sx={{width:'90%'}}>Start</Button>
             </form>
           </Box>
